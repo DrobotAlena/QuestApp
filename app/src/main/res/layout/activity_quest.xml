@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchParent"
+    android:layout_margin="@dimen/quest_activity_margin"
+    android:orientation="vertical"
+    tools:context="nsu.fit.questapp.view.QuestActivity">
+
+    <LinearLayout
+        style="@style/VerticalWrapping"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/quest_title"
+            style="@style/VerticalWrapping"
+            android:layout_marginRight="@dimen/quest_title_margin_right"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_size_big"
+            android:includeFontPadding="false"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            tools:text="Title of the quest"
+            tools:ignore="InefficientWeight,RtlHardcoded" />
+
+        <Button
+            android:id="@+id/quest_sandwich"
+            style="@style/SandwichButton"/>
+
+    </LinearLayout>
+
+    <fragment android:name="nsu.fit.questapp.view.fragment.QuestFragment"
+        android:id="@+id/quest_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/quest_fragment_margin_top"
+        tools:layout="@layout/fragment_quest"/>
+
+</LinearLayout>

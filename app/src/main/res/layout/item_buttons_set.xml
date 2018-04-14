@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/VerticalWrapping"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/VerticalWrapping"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/quest_first_action"
+            style="@style/QuestButton"
+            android:layout_weight="1"
+            android:layout_marginRight="@dimen/buttons_set_first_margin_right"
+            tools:text="First Action"
+            tools:ignore="RtlHardcoded" />
+
+        <Button
+            android:id="@+id/quest_second_action"
+            style="@style/QuestButton"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/buttons_set_second_margin_left"
+            tools:text="Second Action"
+            tools:ignore="RtlHardcoded" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/VerticalWrapping"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/quest_third_action"
+            style="@style/QuestButton"
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/buttons_set_third_margin_top"
+            android:layout_marginRight="@dimen/buttons_set_third_margin_right"
+            tools:text="Third Action"
+            tools:ignore="RtlHardcoded" />
+
+        <Button
+            android:id="@+id/quest_fourth_action"
+            style="@style/QuestButton"
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/buttons_set_fourth_margin_top"
+            android:layout_marginLeft="@dimen/buttons_set_fourth_margin_left"
+            tools:text="Fourth Action"
+            tools:ignore="RtlHardcoded" />
+
+    </LinearLayout>
+</LinearLayout>

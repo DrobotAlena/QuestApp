@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchParent"
+    android:orientation="vertical"
+    tools:context="nsu.fit.questapp.view.StartActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/start_activity_logo_height"
+        android:layout_marginTop="@dimen/start_activity_logo_margin_top"
+        android:src="@drawable/quest_app_logo"
+        android:tint="@color/colorPrimary"
+        tools:ignore="ContentDescription" />
+
+    <LinearLayout
+        style="@style/VerticalWrapping"
+        android:orientation="vertical"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="@dimen/start_activity_button_list_margin_bottom"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/start_activity_start_button"
+            style="@style/StartActivityButton"
+            android:text="@string/start_activity_start_button"/>
+
+        <Button
+            android:id="@+id/start_activity_continue_button"
+            style="@style/StartActivityButton"
+            android:text="@string/start_activity_continue_button"/>
+
+        <Button
+            android:id="@+id/start_activity_select_button"
+            style="@style/StartActivityButton"
+            android:text="@string/start_activity_select_button"/>
+
+    </LinearLayout>
+</FrameLayout>

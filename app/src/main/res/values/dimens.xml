@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Text -->
+    <dimen name="text_size_big">24sp</dimen>
+    <dimen name="text_size_bigger">18sp</dimen>
+    <dimen name="text_size_normal">16sp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_tiny">12sp</dimen>
+
+    <!-- StartActivity -->
+    <dimen name="start_activity_button_width">256dp</dimen>
+    <dimen name="start_activity_button_list_margin_bottom">24dp</dimen>
+    <dimen name="start_activity_button_margin_bottom">8dp</dimen>
+    <dimen name="start_activity_logo_margin_top">32dp</dimen>
+    <dimen name="start_activity_logo_height">100dp</dimen>
+    <dimen name="quest_title_margin_right">8dp</dimen>
+
+    <!-- QuestActivity -->
+    <dimen name="quest_fragment_margin_top">16dp</dimen>
+    <dimen name="quest_activity_margin">8dp</dimen>
+
+    <!-- QuestFragment -->
+    <dimen name="quest_picture_height">256dp</dimen>
+    <dimen name="quest_description_margin">8dp</dimen>
+    <dimen name="quest_buttons_set_margin_top">8dp</dimen>
+
+    <!-- SandwichButton -->
+    <dimen name="sandwich_size">32dp</dimen>
+
+    <!-- CardView -->
+    <dimen name="card_view_corner_radius">4dp</dimen>
+    <dimen name="card_view_margin">16dp</dimen>
+
+    <!-- Set of buttons -->
+    <dimen name="buttons_set_first_margin_right">4dp</dimen>
+    <dimen name="buttons_set_second_margin_left">4dp</dimen>
+    <dimen name="buttons_set_third_margin_top">8dp</dimen>
+    <dimen name="buttons_set_third_margin_right">4dp</dimen>
+    <dimen name="buttons_set_fourth_margin_top">8dp</dimen>
+    <dimen name="buttons_set_fourth_margin_left">4dp</dimen>
+
+    <!-- Sandwich Menu -->
+    <dimen name="sandwich_item_padding">16dp</dimen>
+
+</resources>
