@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/VerticalWrapping"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/VerticalWrapping"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/text_size_bigger"
+        android:padding="@dimen/sandwich_item_padding"
+        android:text="@string/quest_sandwich_title"/>
+
+    <TextView
+        android:id="@+id/quest_sandwich_restart"
+        style="@style/VerticalWrapping"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/text_size_normal"
+        android:padding="@dimen/sandwich_item_padding"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/quest_sandwich_restart"/>
+
+    <TextView
+        android:id="@+id/quest_sandwich_select"
+        style="@style/VerticalWrapping"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/text_size_normal"
+        android:padding="@dimen/sandwich_item_padding"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/quest_sandwich_select"/>
+
+    <TextView
+        android:id="@+id/quest_sandwich_exit"
+        style="@style/VerticalWrapping"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/text_size_normal"
+        android:padding="@dimen/sandwich_item_padding"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/quest_sandwich_exit"/>
+
+</LinearLayout>
