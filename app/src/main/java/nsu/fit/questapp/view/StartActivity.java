@@ -1,5 +1,7 @@
 package nsu.fit.questapp.view;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -14,6 +16,10 @@ public class StartActivity extends AppCompatActivity {
     private Button startButton;
     private Button continueButton;
     private Button selectButton;
+
+    public static void start(Context context) {
+        context.startActivity(new Intent(context, StartActivity.class));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
