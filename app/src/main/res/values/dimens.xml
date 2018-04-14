@@ -30,6 +30,7 @@
 
     <!-- CardView -->
     <dimen name="card_view_corner_radius">4dp</dimen>
+    <dimen name="card_view_margin">16dp</dimen>
 
     <!-- Set of buttons -->
     <dimen name="buttons_set_first_margin_right">4dp</dimen>
