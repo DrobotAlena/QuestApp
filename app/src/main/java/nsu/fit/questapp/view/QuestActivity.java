@@ -14,7 +14,7 @@ import nsu.fit.questapp.view.fragment.QuestFragment;
 /**
  * Created by Alena Drobot
  */
-public class QuestActivity extends AppCompatActivity {
+public class QuestActivity extends AppCompatActivity implements QuestView {
 
     private BottomSheetDialog sandwichMenu;
     private Button sandwichButton;
