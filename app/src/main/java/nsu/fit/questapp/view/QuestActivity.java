@@ -7,9 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import nsu.fit.questapp.R;
 import nsu.fit.questapp.view.fragment.QuestFragment;
+
+import static nsu.fit.questapp.view.gallary.GalleryCardFragment.SPACE;
+import static nsu.fit.questapp.view.gallary.GalleryCardFragment.TYPE;
 
 /**
  * Created by Alena Drobot
@@ -34,8 +38,14 @@ public class QuestActivity extends AppCompatActivity implements QuestView {
         initSandwichMenu();
         initViews();
 
-        // TODO: replace to method
+        setFragment(SPACE);
+    }
+
+    private void setFragment(String type) {
         QuestFragment questFragment = new QuestFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(TYPE, type);
+        questFragment.setArguments(bundle);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.quest_fragment, questFragment)
                 .commit();
@@ -62,5 +72,10 @@ public class QuestActivity extends AppCompatActivity implements QuestView {
         selectButton = view.findViewById(R.id.quest_sandwich_select);
         exitButton = view.findViewById(R.id.quest_sandwich_exit);
         // TODO: set listeners
+    }
+
+    @Override
+    public void showError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 }

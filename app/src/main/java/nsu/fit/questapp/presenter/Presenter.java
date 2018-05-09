@@ -9,4 +9,6 @@ public interface Presenter {
 
     @DrawableRes
     int getPicture(String name);
+
+    String getDescription(String name);
 }

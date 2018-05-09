@@ -2,6 +2,8 @@ package nsu.fit.questapp.model.card;
 
 import android.support.annotation.DrawableRes;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 /**
@@ -9,9 +11,13 @@ import java.util.ArrayList;
  */
 public class CardData {
 
+    @SerializedName("id")
     private int id;
+    @SerializedName("description")
     private String description;
+    @SerializedName("drawableId")
     private int drawableId;
+    @SerializedName("buttons")
     private ArrayList<ButtonData> buttons;
 
     public CardData(int id, String description, @DrawableRes int drawableId, ArrayList<ButtonData> buttons) {
