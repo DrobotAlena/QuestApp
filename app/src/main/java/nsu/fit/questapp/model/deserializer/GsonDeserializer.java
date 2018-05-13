@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import nsu.fit.questapp.model.card.Cards;
+import nsu.fit.questapp.model.card.Quest;
 import nsu.fit.questapp.model.json.JsonReader;
 
 import static nsu.fit.questapp.view.gallary.GalleryCardFragment.CUSTOM;
@@ -15,7 +15,7 @@ import static nsu.fit.questapp.view.gallary.GalleryCardFragment.SPACE;
 
 public class GsonDeserializer {
 
-    private final static Cards EMPTY_CARDS = null;
+    private final static Quest EMPTY_QUEST = null;
 
     private Gson gson;
     private JsonReader jsonReader;
@@ -26,16 +26,16 @@ public class GsonDeserializer {
     }
 
     @Nullable
-    public Cards deserialize(String name) {
+    public Quest deserialize(String name) {
         switch (name) {
             case SPACE:
-                return gson.fromJson(jsonReader.getSpaceJson(), Cards.class);
+                return gson.fromJson(jsonReader.getSpaceJson(), Quest.class);
             case DEBATES:
-                return gson.fromJson(jsonReader.getDebatesJson(), Cards.class);
+                return gson.fromJson(jsonReader.getDebatesJson(), Quest.class);
             case CUSTOM:
-                return gson.fromJson(jsonReader.getTestJson(), Cards.class);
+                return gson.fromJson(jsonReader.getTestJson(), Quest.class);
             default:
-                return EMPTY_CARDS;
+                return EMPTY_QUEST;
         }
     }
 }

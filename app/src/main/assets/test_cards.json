@@ -1,52 +1,55 @@
 {
   "cards": [
     {
-      "id": 1,
-      "description": "description",
+      "id": 0,
+      "description": "Это тестовый JSON файл. Именно так должна вылгядеть структура файла для того, чтобы программа смогла его распарсить и представить данные.",
+      "drawableName": "quest_room_pic",
       "buttons": [
         {
-          "text": "text 2",
+          "text": "Понятно",
           "reference": 2
         },
         {
-          "text": "text 3",
-          "reference": 3
+          "text": "Не понял",
+          "reference": 1
         },
         {
-          "text": "text 3",
-          "reference": 3
+          "text": "Уточняю",
+          "reference": 1
         },
         {
-          "text": "text 2",
+          "text": "Ага",
+          "reference": 2
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "description": "Открой test_cards.json в assets и изучи структуру.",
+      "drawableName": "quest_room_pic",
+      "buttons": [
+        {
+          "text": "ОК",
+          "reference": 2
+        },
+        {
+          "text": "Понятно",
+          "reference": 2
+        },
+        {
+          "text": "Готово",
+          "reference": 2
+        },
+        {
+          "text": "Да, капитан",
           "reference": 2
         }
       ]
     },
     {
       "id": 2,
-      "description": "description 2",
-      "buttons": [
-        {
-          "text": "text 3",
-          "reference": 3
-        },
-        {
-          "text": "text 3",
-          "reference": 3
-        },
-        {
-          "text": "text 3",
-          "reference": 3
-        },
-        {
-          "text": "text 3",
-          "reference": 3
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "description": "description 3",
+      "description": "Квест успешно завершен! Ты - молодец :) Не каждому удается дойти до конца.",
+      "drawableName": "quest_room_pic",
       "buttons": []
     }
   ]

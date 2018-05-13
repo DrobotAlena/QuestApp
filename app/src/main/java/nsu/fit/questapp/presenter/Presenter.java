@@ -1,14 +1,14 @@
 package nsu.fit.questapp.presenter;
 
-import android.support.annotation.DrawableRes;
+import android.support.annotation.Nullable;
+
+import nsu.fit.questapp.model.card.CardData;
 
 /**
  * Created by Alena Drobot
  */
 public interface Presenter {
 
-    @DrawableRes
-    int getPicture(String name);
-
-    String getDescription(String name);
+    @Nullable
+    CardData getCard(String name, int cardId);
 }

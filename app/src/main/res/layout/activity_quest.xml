@@ -28,11 +28,10 @@
 
     </LinearLayout>
 
-    <fragment android:name="nsu.fit.questapp.view.fragment.QuestFragment"
+    <include layout="@layout/item_quest"
         android:id="@+id/quest_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/quest_fragment_margin_top"
-        tools:layout="@layout/fragment_quest"/>
+        android:layout_marginTop="@dimen/quest_fragment_margin_top"/>
 
 </LinearLayout>

@@ -4,8 +4,7 @@ import android.content.Context;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 
-import nsu.fit.questapp.model.card.CardData;
-import nsu.fit.questapp.model.card.Cards;
+import nsu.fit.questapp.model.card.Quest;
 import nsu.fit.questapp.model.deserializer.GsonDeserializer;
 import nsu.fit.questapp.presenter.Presenter;
 
@@ -33,7 +32,7 @@ public class Model {
     }
 
     @Nullable
-    public Cards getCards(String name) {
+    public Quest getQuest(String name) {
         return deserializer.deserialize(name);
     }
 }

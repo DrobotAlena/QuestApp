@@ -12,22 +12,24 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import nsu.fit.questapp.R;
 import nsu.fit.questapp.view.animation.ZoomOutPageTransformer;
 import nsu.fit.questapp.view.gallary.GalleryCardFragment;
 
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 import static nsu.fit.questapp.view.gallary.GalleryCardFragment.CUSTOM;
-import static nsu.fit.questapp.view.gallary.GalleryCardFragment.CUSTOM_POSITION;
 import static nsu.fit.questapp.view.gallary.GalleryCardFragment.DEBATES;
-import static nsu.fit.questapp.view.gallary.GalleryCardFragment.DEBATES_POSITION;
 import static nsu.fit.questapp.view.gallary.GalleryCardFragment.DESCRIPTION;
 import static nsu.fit.questapp.view.gallary.GalleryCardFragment.BUTTON_TEXT;
 import static nsu.fit.questapp.view.gallary.GalleryCardFragment.SPACE;
-import static nsu.fit.questapp.view.gallary.GalleryCardFragment.SPACE_POSITION;
 import static nsu.fit.questapp.view.gallary.GalleryCardFragment.TYPE;
 
-public class GalleryActivity extends AppCompatActivity implements GalleryCardFragment.QuestFragmentListener {
+public class GalleryActivity extends AppCompatActivity implements GalleryCardFragment.GalleryFragmentListener {
+
+    private final static int FIRST_CARD = 0;
+    private final static int LAST_CARD = 2;
 
     private ViewPager galleryPager;
     private PagerAdapter galleryPagerAdapter;
@@ -43,6 +45,15 @@ public class GalleryActivity extends AppCompatActivity implements GalleryCardFra
     public void showError(String errorMessage) {
         galleryPager.setVisibility(View.GONE);
         showErrorDialog(errorMessage);
+    }
+
+    @Override
+    public void openQuest(String type) {
+        Intent intent = new Intent(this, QuestActivity.class);
+        intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra(TYPE, type);
+        startActivity(intent);
+        finish();
     }
 
     @Override
@@ -100,6 +111,7 @@ public class GalleryActivity extends AppCompatActivity implements GalleryCardFra
         onRightButton = findViewById(R.id.card_on_right_button);
         onLeftButton.setOnClickListener(v -> setPosition(toLeft()));
         onRightButton.setOnClickListener(v -> setPosition(toRight()));
+        invalidateArrowsVisibility();
     }
 
     private int toLeft() {
@@ -112,17 +124,18 @@ public class GalleryActivity extends AppCompatActivity implements GalleryCardFra
 
     private void invalidateArrowsVisibility() {
         switch (galleryPager.getCurrentItem()) {
-            case SPACE_POSITION:
+            case FIRST_CARD:
                 onLeftButton.setVisibility(View.GONE);
                 onRightButton.setVisibility(View.VISIBLE);
                 break;
-            case DEBATES_POSITION:
+            case LAST_CARD:
+                onLeftButton.setVisibility(View.VISIBLE);
+                onRightButton.setVisibility(View.GONE);
+                break;
+            default:
                 onLeftButton.setVisibility(View.VISIBLE);
                 onRightButton.setVisibility(View.VISIBLE);
                 break;
-            case CUSTOM_POSITION:
-                onLeftButton.setVisibility(View.VISIBLE);
-                onRightButton.setVisibility(View.GONE);
         }
     }
 

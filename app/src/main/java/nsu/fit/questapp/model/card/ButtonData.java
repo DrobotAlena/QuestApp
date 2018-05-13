@@ -1,5 +1,7 @@
 package nsu.fit.questapp.model.card;
 
+import android.support.annotation.Nullable;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -17,6 +19,7 @@ public class ButtonData {
         this.reference = reference;
     }
 
+    @Nullable
     public String getText() {
         return text;
     }

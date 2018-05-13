@@ -1,11 +1,11 @@
 package nsu.fit.questapp.presenter;
 
 import android.content.Context;
-import android.support.annotation.DrawableRes;
+import android.support.annotation.Nullable;
 
 import nsu.fit.questapp.model.Model;
-import nsu.fit.questapp.model.card.Cards;
-import nsu.fit.questapp.utils.StringUtils;
+import nsu.fit.questapp.model.card.CardData;
+import nsu.fit.questapp.model.card.Quest;
 import nsu.fit.questapp.view.QuestView;
 
 /**
@@ -15,41 +15,24 @@ public class QuestPresenter implements Presenter {
 
     private QuestView view;
     private Model model;
-    private Cards cards;
+    private Quest quest;
 
     public QuestPresenter(QuestView view, Context context) {
         this.view = view;
         this.model = new Model(this, context);
     }
 
-    @DrawableRes
+    @Nullable
     @Override
-    public int getPicture(String name) {
-        int pictureId = model.getPictureId(name);
-        if (pictureId == 0) {
-            sendError("Нет картинки");
-            return 0;
-        } else {
-            return pictureId;
+    public CardData getCard(String name, int cardId) {
+        if (quest == null) {
+            quest = model.getQuest(name);
         }
-    }
-
-    // FINISH WORK
-    @Override
-    public String getDescription(String name) {
-        if (cards == null) {
-            cards = model.getCards(name);
-        }
-        String description = cards.getCards().get(0).getDescription();
-        if (StringUtils.isEmpty(description)) {
-            sendError("Пустое описание");
+        if (quest == null || quest.getCards() == null || quest.getCards().size() <= cardId) {
+            view.showError("Проблема загрузки игры: " + name);
             return null;
         } else {
-            return description;
+            return quest.getCards().get(cardId);
         }
-    }
-
-    private void sendError(String message) {
-        view.showError(message);
     }
 }
