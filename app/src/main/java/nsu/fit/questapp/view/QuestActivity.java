@@ -157,14 +157,14 @@ public class QuestActivity extends AppCompatActivity implements QuestView {
     private void initSandwichItems(View view) {
         restartButton = view.findViewById(R.id.quest_sandwich_restart);
         restartButton.setOnClickListener(v -> {
-            recreate();
             sandwichMenu.hide();
+            recreate();
         });
 
         selectButton = view.findViewById(R.id.quest_sandwich_select);
         selectButton.setOnClickListener(v -> {
-            GalleryActivity.start(this);
             sandwichMenu.hide();
+            GalleryActivity.start(this);
         });
 
         exitButton = view.findViewById(R.id.quest_sandwich_exit);

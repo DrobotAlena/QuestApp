@@ -12,7 +12,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import nsu.fit.questapp.R;
 import nsu.fit.questapp.view.animation.ZoomOutPageTransformer;
@@ -30,6 +29,7 @@ public class GalleryActivity extends AppCompatActivity implements GalleryCardFra
 
     private final static int FIRST_CARD = 0;
     private final static int LAST_CARD = 2;
+    private final static int NUMBER_OF_CARDS = 3;
 
     private ViewPager galleryPager;
     private PagerAdapter galleryPagerAdapter;
@@ -70,7 +70,7 @@ public class GalleryActivity extends AppCompatActivity implements GalleryCardFra
         galleryPager.setPageTransformer(true, new ZoomOutPageTransformer());
         initErrorDialog();
         initArrows();
-        galleryPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        galleryPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 invalidateArrowsVisibility();
@@ -169,7 +169,7 @@ public class GalleryActivity extends AppCompatActivity implements GalleryCardFra
 
         @Override
         public int getCount() {
-            return 3;
+            return NUMBER_OF_CARDS;
         }
 
         private Bundle buildBundle(@NonNull String type, @NonNull String description, @NonNull String buttonText) {
