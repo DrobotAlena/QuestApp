@@ -1,40 +1,191 @@
 package nsu.fit.questapp.view;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.SeekBar;
+import android.view.View;
 
 import nsu.fit.questapp.R;
 import nsu.fit.questapp.view.animation.ZoomOutPageTransformer;
-import nsu.fit.questapp.view.gallary.GallaryCardFragment;
+import nsu.fit.questapp.view.gallary.GalleryCardFragment;
 
-public class GalleryActivity extends AppCompatActivity {
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
+import static nsu.fit.questapp.view.QuestActivity.JSON_URI;
+import static nsu.fit.questapp.view.gallary.GalleryCardFragment.CUSTOM;
+import static nsu.fit.questapp.view.gallary.GalleryCardFragment.DEBATES;
+import static nsu.fit.questapp.view.gallary.GalleryCardFragment.DESCRIPTION;
+import static nsu.fit.questapp.view.gallary.GalleryCardFragment.BUTTON_TEXT;
+import static nsu.fit.questapp.view.gallary.GalleryCardFragment.SPACE;
+import static nsu.fit.questapp.view.gallary.GalleryCardFragment.TYPE;
+
+/**
+ * Created by Alena Drobot
+ */
+public class GalleryActivity extends AppCompatActivity implements GalleryCardFragment.GalleryFragmentListener {
+
+    /**
+     * Android does NOT support "json" (and "js" for javascript extension) as a MIME type
+     * We get documents of any type and have to filter them
+     */
+    private final static String JSON_MIME_TYPE = "*/*";
+    private final static String JSON_READING_ERROR = "Ошибка чтения файла";
+    private final static String FILE_MANAGER_TITLE = "Выбери JSON файл";
+    private final static String FILE_MANAGER_ERROR = "Ошибка открытия файлового менеджера";
+    private final static int FIRST_CARD = 0;
+    private final static int LAST_CARD = 2;
+    private final static int NUMBER_OF_CARDS = 3;
+    private final static int READ_CONTENT_RESULT_CODE = 1;
 
     private ViewPager galleryPager;
     private PagerAdapter galleryPagerAdapter;
-
-    private GallaryCardFragment galleryCardFragment;
+    private AlertDialog errorDialog;
+    private View onLeftButton;
+    private View onRightButton;
 
     public static void start(Context context) {
         context.startActivity(new Intent(context, GalleryActivity.class));
     }
 
     @Override
+    public void showError(String errorMessage) {
+        galleryPager.setVisibility(View.GONE);
+        showErrorDialog(errorMessage);
+    }
+
+    @Override
+    public void openQuest(String type) {
+        Intent intent = new Intent(this, QuestActivity.class);
+        intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra(TYPE, type);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
+        initActivity();
+    }
 
+    private void initActivity() {
         galleryPager = findViewById(R.id.gallery_pager);
         galleryPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         galleryPager.setAdapter(galleryPagerAdapter);
         galleryPager.setPageTransformer(true, new ZoomOutPageTransformer());
+        initErrorDialog();
+        initArrows();
+        galleryPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                invalidateArrowsVisibility();
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                invalidateArrowsVisibility();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                invalidateArrowsVisibility();
+            }
+        });
+    }
+
+    private void initErrorDialog() {
+        errorDialog = new AlertDialog.Builder(this).create();
+        errorDialog.setTitle(getString(R.string.gallery_activity_error_dialog_title));
+        errorDialog.setCancelable(false);
+        errorDialog.setButton(AlertDialog.BUTTON_NEGATIVE,
+                getString(R.string.gallery_activity_error_dialog_button),
+                (dialogInterface, i) -> StartActivity.start(GalleryActivity.this));
+    }
+
+    private void showErrorDialog(@NonNull String errorMessage) {
+        errorDialog.setMessage(errorMessage);
+        errorDialog.show();
+    }
+
+    public void setPosition(int position) {
+        galleryPager.setCurrentItem(position);
+    }
+
+    private void initArrows() {
+        onLeftButton = findViewById(R.id.card_on_left_button);
+        onRightButton = findViewById(R.id.card_on_right_button);
+        onLeftButton.setOnClickListener(v -> setPosition(toLeft()));
+        onRightButton.setOnClickListener(v -> setPosition(toRight()));
+        invalidateArrowsVisibility();
+    }
+
+    private int toLeft() {
+        return galleryPager.getCurrentItem() - 1;
+    }
+
+    private int toRight() {
+        return galleryPager.getCurrentItem() + 1;
+    }
+
+    private void invalidateArrowsVisibility() {
+        switch (galleryPager.getCurrentItem()) {
+            case FIRST_CARD:
+                onLeftButton.setVisibility(View.GONE);
+                onRightButton.setVisibility(View.VISIBLE);
+                break;
+            case LAST_CARD:
+                onLeftButton.setVisibility(View.VISIBLE);
+                onRightButton.setVisibility(View.GONE);
+                break;
+            default:
+                onLeftButton.setVisibility(View.VISIBLE);
+                onRightButton.setVisibility(View.VISIBLE);
+                break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Uri jsonFileUri;
+
+        if (resultCode == RESULT_OK && requestCode == READ_CONTENT_RESULT_CODE) {
+            jsonFileUri = data.getData();
+            if (jsonFileUri != null) {
+                Intent intent = new Intent(this, QuestActivity.class);
+                intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra(TYPE, CUSTOM);
+                intent.putExtra(JSON_URI, jsonFileUri.toString());
+                startActivity(intent);
+                finish();
+            } else {
+                showError(JSON_READING_ERROR);
+            }
+        }
+    }
+
+    /**
+     * Android does NOT support "json" (and "js" for javascript extension) as a MIME type
+     * We get documents of any type and have to filter them
+     */
+    @Override
+    public void openFileBrowser() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType(JSON_MIME_TYPE);
+        try {
+            startActivityForResult(Intent.createChooser(intent, FILE_MANAGER_TITLE), READ_CONTENT_RESULT_CODE);
+        } catch (ActivityNotFoundException e) {
+            showError(FILE_MANAGER_ERROR);
+        }
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
@@ -44,28 +195,38 @@ public class GalleryActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            switch (position){
+            switch (position) {
 
+                case 0:
+                    GalleryCardFragment space = new GalleryCardFragment();
+                    space.setArguments(buildBundle(SPACE, getString(R.string.gallery_space_description), getString(R.string.gallery_space_button)));
+                    return space;
                 case 1:
-                    galleryCardFragment = new GallaryCardFragment();
-                    return galleryCardFragment;
+                    GalleryCardFragment debates = new GalleryCardFragment();
+                    debates.setArguments(buildBundle(DEBATES, getString(R.string.gallery_debates_description), getString(R.string.gallery_debates_button)));
+                    return debates;
                 case 2:
-                    galleryCardFragment = new GallaryCardFragment();
-                    return galleryCardFragment;
-                case 3:
-                    galleryCardFragment = new GallaryCardFragment();
-                    return galleryCardFragment;
-                case 4:
-                    galleryCardFragment = new GallaryCardFragment();
-                    return galleryCardFragment;
+                    GalleryCardFragment custom = new GalleryCardFragment();
+                    custom.setArguments(buildBundle(CUSTOM, getString(R.string.gallery_custom_description), getString(R.string.gallery_custom_button)));
+                    return custom;
                 default:
-                    return new GallaryCardFragment();
+                    GalleryCardFragment defaultCard = new GalleryCardFragment();
+                    defaultCard.setArguments(buildBundle(SPACE, getString(R.string.gallery_space_description), getString(R.string.gallery_space_button)));
+                    return defaultCard;
             }
         }
 
         @Override
         public int getCount() {
-            return 4;
+            return NUMBER_OF_CARDS;
+        }
+
+        private Bundle buildBundle(@NonNull String type, @NonNull String description, @NonNull String buttonText) {
+            Bundle bundle = new Bundle();
+            bundle.putString(TYPE, type);
+            bundle.putString(DESCRIPTION, description);
+            bundle.putString(BUTTON_TEXT, buttonText);
+            return bundle;
         }
     }
 }

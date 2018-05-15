@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchParent">
 
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         style="@style/MatchParent"
         android:layout_margin="@dimen/card_view_margin"
         card_view:cardCornerRadius="@dimen/card_view_corner_radius">
@@ -19,32 +18,35 @@
                     tools:ignore="UseCompoundDrawables">
 
                     <ImageView
-                        android:layout_width="200dp"
-                        android:layout_height="200dp"
-                        android:layout_marginTop="32dp"
+                        android:id="@+id/card_logo"
+                        android:layout_width="@dimen/gallery_card_logo_size"
+                        android:layout_height="@dimen/gallery_card_logo_size"
+                        android:layout_marginTop="@dimen/gallery_card_logo_margin_top"
                         android:layout_gravity="center_horizontal"
-                        android:padding="36dp"
+                        android:padding="@dimen/gallery_card_logo_padding"
                         android:background="@drawable/shape_circle"
-                        android:src="@drawable/ic_space_logo"
+                        tools:src="@drawable/ic_space_logo"
                         tools:ignore="ContentDescription" />
 
                     <TextView
+                        android:id="@+id/card_description"
                         style="@style/VerticalWrapping"
                         android:textSize="@dimen/text_size_small"
                         android:textColor="@color/colorPrimaryDark"
-                        android:layout_margin="18dp"
+                        android:layout_margin="@dimen/gallery_card_description_margin"
                         android:textAlignment="center"
-                        android:text="@string/gallery_space_description"/>
+                        tools:text="@string/gallery_space_description"/>
 
                 </LinearLayout>
 
                 <Button
+                    android:id="@+id/card_action_button"
                     style="@style/AppButton"
                     android:layout_gravity="bottom|center_horizontal"
-                    android:layout_width="200dp"
+                    android:layout_width="@dimen/gallery_card_button_width"
                     android:layout_height="wrap_content"
-                    android:layout_margin="32dp"
-                    android:text="@string/gallery_space_button"/>
+                    android:layout_margin="@dimen/gallery_card_button_margin"
+                    tools:text="@string/gallery_space_button"/>
 
             </FrameLayout>
     </android.support.v7.widget.CardView>

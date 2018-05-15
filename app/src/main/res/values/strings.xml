@@ -5,13 +5,25 @@
 
     <!-- StartActivity -->
     <string name="start_activity_start_button">Начать</string>
-    <string name="start_activity_continue_button">Продолжить</string>
     <string name="start_activity_select_button">Выбрать квест</string>
     <string name="quest_sandwich_title">Выбери действие</string>
     <string name="quest_sandwich_restart">Начать заново</string>
     <string name="quest_sandwich_select">Выбрать другой квест</string>
     <string name="quest_sandwich_exit">Завершить игру</string>
     <string name="gallery_space_button">Полетели</string>
-    <string name="gallery_space_description">Кто мог ожидать, что плановый рейс на Альдебаран станет для вас роковым? Вы планировали всего лишь мирно поспать в анабиозе, но в этот раз отдохнуть явно не получится. На борту обнаружена новая форма жизни, которая заблокирует системы обеспечения через 60 минут. Надо поскорее починить космический корабль и благополучно долететь до места назначения.</string>
+    <string name="gallery_space_description">Кто мог ожидать, что плановый рейс на Альдебаран станет для вас роковым? Вы планировали всего лишь мирно поспать в анабиозе, но в этот раз отдохнуть явно не получится. Ваш корабль столкнулся с чужим космическим кораблем. Примите на себя роль капитана и отдайте приказ вашей команде.</string>
+    <string name="gallery_debates_button">Участвуем</string>
+    <string name="gallery_debates_description">Можно провести свободное время не только с удовольствием, но и с пользой? Попробуйте сыграть в «Дебаты». Данный квест даст вам возможность узнать, насколько хороший президент мог бы из вас получиться. </string>
+    <string name="gallery_custom_button">Загрузить</string>
+    <string name="gallery_custom_description">Наши игры настолько скучные, что ты не нашел ничего интересного для себя? Хорошо, умник! Покажи нам, как должен выглядеть по-настоящему хороший квест.</string>
 
+    <!-- GalleryActivity -->
+    <string name="gallery_activity_bundle_error">Ошибка загрузки карт с доступными играми</string>
+    <string name="gallery_activity_error_dialog_title">Ошибка</string>
+    <string name="gallery_activity_error_dialog_button">OK</string>
+
+    <!-- QuestActivity -->
+    <string name="result_activity_restart_button">Заново</string>
+    <string name="result_activity_select_button">Другой квест</string>
+    <string name="result_activity_exit_button">Завершить игру</string>
 </resources>

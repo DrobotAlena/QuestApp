@@ -19,8 +19,6 @@
     <!-- QuestActivity -->
     <dimen name="quest_fragment_margin_top">16dp</dimen>
     <dimen name="quest_activity_margin">8dp</dimen>
-
-    <!-- QuestFragment -->
     <dimen name="quest_picture_height">256dp</dimen>
     <dimen name="quest_description_margin">8dp</dimen>
     <dimen name="quest_buttons_set_margin_top">8dp</dimen>
@@ -30,7 +28,7 @@
 
     <!-- CardView -->
     <dimen name="card_view_corner_radius">4dp</dimen>
-    <dimen name="card_view_margin">16dp</dimen>
+    <dimen name="card_view_margin">24dp</dimen>
 
     <!-- Set of buttons -->
     <dimen name="buttons_set_first_margin_right">4dp</dimen>
@@ -42,5 +40,14 @@
 
     <!-- Sandwich Menu -->
     <dimen name="sandwich_item_padding">16dp</dimen>
+
+    <!-- GalleryActivity -->
+    <dimen name="gallery_arrow_size">24dp</dimen>
+    <dimen name="gallery_card_logo_size">200dp</dimen>
+    <dimen name="gallery_card_logo_margin_top">32dp</dimen>
+    <dimen name="gallery_card_logo_padding">36dp</dimen>
+    <dimen name="gallery_card_description_margin">18dp</dimen>
+    <dimen name="gallery_card_button_width">200dp</dimen>
+    <dimen name="gallery_card_button_margin">32dp</dimen>
 
 </resources>
