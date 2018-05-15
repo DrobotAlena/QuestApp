@@ -1,7 +1,6 @@
 package nsu.fit.questapp.view.gallary;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
@@ -14,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import nsu.fit.questapp.R;
-import nsu.fit.questapp.view.QuestActivity;
 
 /**
  * Created by Alena Drobot
@@ -41,6 +39,7 @@ public class GalleryCardFragment extends Fragment {
     public interface GalleryFragmentListener {
         void showError(String errorMessage);
         void openQuest(String type);
+        void openFileBrowser();
     }
 
     @Override
@@ -107,7 +106,11 @@ public class GalleryCardFragment extends Fragment {
         actionButton = view.findViewById(R.id.card_action_button);
         actionButton.setText(buttonText);
         actionButton.setOnClickListener(v -> {
-            fragmentListener.openQuest(cardType);
+            if (cardType.equals(CUSTOM)) {
+                fragmentListener.openFileBrowser();
+            } else {
+                fragmentListener.openQuest(cardType);
+            }
         });
     }
 

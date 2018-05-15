@@ -14,7 +14,6 @@ import nsu.fit.questapp.R;
 public class StartActivity extends AppCompatActivity {
 
     private Button startButton;
-    private Button continueButton;
     private Button selectButton;
 
     public static void start(Context context) {
@@ -31,7 +30,6 @@ public class StartActivity extends AppCompatActivity {
 
     private void initViews() {
         startButton = findViewById(R.id.start_activity_start_button);
-        continueButton = findViewById(R.id.start_activity_continue_button);
         selectButton = findViewById(R.id.start_activity_select_button);
 
         setClickListeners();
@@ -44,8 +42,5 @@ public class StartActivity extends AppCompatActivity {
         });
 
         selectButton.setOnClickListener(v -> GalleryActivity.start(StartActivity.this));
-
-        // TODO: set listeners
-        continueButton.setOnClickListener(null);
     }
 }

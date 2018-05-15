@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/VerticalWrapping"
+    android:id="@+id/result_buttons_set"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <Button
+        android:id="@+id/result_restart_button"
+        style="@style/StartActivityButton"
+        android:text="@string/result_activity_restart_button"/>
+
+    <Button
+        android:id="@+id/result_select_button"
+        style="@style/StartActivityButton"
+        android:text="@string/result_activity_select_button"/>
+
+    <Button
+        android:id="@+id/result_exit_button"
+        style="@style/StartActivityButton"
+        android:text="@string/result_activity_exit_button"/>
+
+</LinearLayout>

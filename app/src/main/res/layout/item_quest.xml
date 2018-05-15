@@ -24,21 +24,37 @@
             android:layout_marginTop="@dimen/quest_buttons_set_margin_top"
             card_view:cardCornerRadius="@dimen/card_view_corner_radius">
 
-            <TextView
-                android:id="@+id/quest_description"
+            <ScrollView
                 style="@style/VerticalWrapping"
-                android:layout_margin="@dimen/quest_description_margin"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="@dimen/text_size_normal"
-                tools:text="Text with a description of the player's situation"/>
+                android:layout_margin="@dimen/quest_description_margin">
 
+                <TextView
+                    android:id="@+id/quest_description"
+                    style="@style/VerticalWrapping"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text_size_normal"
+                    tools:text="Text with a description of the player's situation"/>
+
+            </ScrollView>
         </android.support.v7.widget.CardView>
     </FrameLayout>
 
-    <include
-        layout="@layout/item_buttons_set"
-        style="@style/VerticalWrapping"
-        android:layout_marginTop="@dimen/quest_buttons_set_margin_top"
-        tools:ignore="IncludeLayoutParam" />
+    <FrameLayout
+        style="@style/VerticalWrapping">
 
+        <include
+            layout="@layout/item_buttons_set"
+            style="@style/VerticalWrapping"
+            android:layout_marginTop="@dimen/quest_buttons_set_margin_top"
+            tools:visibility="visible"
+            tools:ignore="IncludeLayoutParam"/>
+
+        <include
+            layout="@layout/item_result_buttons_set"
+            style="@style/VerticalWrapping"
+            android:layout_marginTop="@dimen/quest_buttons_set_margin_top"
+            tools:visibility="gone"
+            tools:ignore="IncludeLayoutParam"/>
+
+    </FrameLayout>
 </LinearLayout>

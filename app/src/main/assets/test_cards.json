@@ -1,4 +1,5 @@
 {
+  "title": "Тестовый JSON",
   "cards": [
     {
       "id": 0,
@@ -50,6 +51,7 @@
       "id": 2,
       "description": "Квест успешно завершен! Ты - молодец :) Не каждому удается дойти до конца.",
       "drawableName": "quest_room_pic",
+      "status": "finish",
       "buttons": []
     }
   ]

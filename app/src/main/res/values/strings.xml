@@ -5,7 +5,6 @@
 
     <!-- StartActivity -->
     <string name="start_activity_start_button">Начать</string>
-    <string name="start_activity_continue_button">Продолжить</string>
     <string name="start_activity_select_button">Выбрать квест</string>
     <string name="quest_sandwich_title">Выбери действие</string>
     <string name="quest_sandwich_restart">Начать заново</string>
@@ -22,4 +21,9 @@
     <string name="gallery_activity_bundle_error">Ошибка загрузки карт с доступными играми</string>
     <string name="gallery_activity_error_dialog_title">Ошибка</string>
     <string name="gallery_activity_error_dialog_button">OK</string>
+
+    <!-- QuestActivity -->
+    <string name="result_activity_restart_button">Заново</string>
+    <string name="result_activity_select_button">Другой квест</string>
+    <string name="result_activity_exit_button">Завершить игру</string>
 </resources>
