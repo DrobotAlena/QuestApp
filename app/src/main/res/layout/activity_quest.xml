@@ -19,6 +19,10 @@
             android:includeFontPadding="false"
             android:layout_gravity="bottom"
             android:layout_weight="1"
+            android:singleLine="true"
+            android:requiresFadingEdge="horizontal"
+            android:fadingEdgeLength="32dp"
+            android:ellipsize="none"
             tools:text="Title of the quest"
             tools:ignore="InefficientWeight,RtlHardcoded" />
 
@@ -28,11 +32,10 @@
 
     </LinearLayout>
 
-    <fragment android:name="nsu.fit.questapp.view.fragment.QuestFragment"
+    <include layout="@layout/item_quest"
         android:id="@+id/quest_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/quest_fragment_margin_top"
-        tools:layout="@layout/fragment_quest"/>
+        android:layout_marginTop="@dimen/quest_fragment_margin_top"/>
 
 </LinearLayout>

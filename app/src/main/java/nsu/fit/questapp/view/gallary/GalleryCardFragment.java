@@ -26,11 +26,8 @@ public class GalleryCardFragment extends Fragment {
     public final static String SPACE = "space";
     public final static String DEBATES = "debates";
     public final static String CUSTOM = "custom";
-    public final static int SPACE_POSITION = 0;
-    public final static int DEBATES_POSITION = 1;
-    public final static int CUSTOM_POSITION = 2;
 
-    private QuestFragmentListener fragmentListener;
+    private GalleryFragmentListener fragmentListener;
     private TextView descriptionView;
     private Button actionButton;
     private ImageView cardLogo;
@@ -39,15 +36,17 @@ public class GalleryCardFragment extends Fragment {
     private String buttonText;
     private String cardType;
 
-    public interface QuestFragmentListener {
+    public interface GalleryFragmentListener {
         void showError(String errorMessage);
+        void openQuest(String type);
+        void openFileBrowser();
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            fragmentListener = (QuestFragmentListener) getActivity();
+            fragmentListener = (GalleryFragmentListener) getActivity();
         } catch (ClassCastException error) {
             throw new ClassCastException(getActivity().toString() + "must implement GalleryCardFragment");
         }
@@ -107,7 +106,11 @@ public class GalleryCardFragment extends Fragment {
         actionButton = view.findViewById(R.id.card_action_button);
         actionButton.setText(buttonText);
         actionButton.setOnClickListener(v -> {
-            // TODO: add listener
+            if (cardType.equals(CUSTOM)) {
+                fragmentListener.openFileBrowser();
+            } else {
+                fragmentListener.openQuest(cardType);
+            }
         });
     }
 
