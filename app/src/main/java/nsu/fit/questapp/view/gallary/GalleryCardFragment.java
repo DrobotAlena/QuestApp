@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import nsu.fit.questapp.R;
 
+import static nsu.fit.questapp.utils.StringUtils.isEmpty;
+
 /**
  * Created by Alena Drobot
  */
@@ -36,7 +38,7 @@ public class GalleryCardFragment extends Fragment {
     private String buttonText;
     private String cardType;
 
-    public interface GalleryFragmentListener {
+    public interface GalleryFragmentListener {  //для общения с активити
         void showError(String errorMessage);
         void openQuest(String type);
         void openFileBrowser();
@@ -61,13 +63,8 @@ public class GalleryCardFragment extends Fragment {
         } catch (Exception error) {
             fragmentListener.showError(error.getMessage());
         }
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
         initViews(view);
+        return view;
     }
 
     private void initViews(View view) {
@@ -87,7 +84,7 @@ public class GalleryCardFragment extends Fragment {
     }
 
     private void checkFields() throws Exception{
-        if (isStringEmpty(description) || isStringEmpty(buttonText) || isStringEmpty(cardType)) {
+        if (isEmpty(description) || isEmpty(buttonText) || isEmpty(cardType)) {
             throw new Exception(errorMessage);
         }
     }
@@ -118,12 +115,8 @@ public class GalleryCardFragment extends Fragment {
         return bundle == null || bundle.isEmpty();
     }
 
-    private boolean isStringEmpty(String string) {
-        return string == null || string.length() == 0;
-    }
-
     @DrawableRes
-    private int getLogoResource() {
+    private int getLogoResource() {  //в зависимости от типа карточки вернуть id логотипа
         switch (cardType) {
             case SPACE:
                 return R.drawable.ic_space_logo;

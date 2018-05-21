@@ -16,8 +16,8 @@ import nsu.fit.questapp.utils.StringUtils;
 public class Model {
     private GsonDeserializer deserializer;
     private Quest quest = null;
-    private String localQuestName = null;
-    private Uri customQuestUri = null;
+    private String localQuestName = null; //с каким сейчас работаем
+    private Uri customQuestUri = null; //с каким сейчас работает
 
     public Model(Context context) {
         this.deserializer = new GsonDeserializer(context);

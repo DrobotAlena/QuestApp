@@ -37,14 +37,15 @@ public class GalleryActivity extends AppCompatActivity implements GalleryCardFra
      * Android does NOT support "json" (and "js" for javascript extension) as a MIME type
      * We get documents of any type and have to filter them
      */
-    private final static String JSON_MIME_TYPE = "*/*";
+
+    private final static String JSON_MIME_TYPE = "*/*";  //тип файлов с кот.хочу работать json/application слева расширение справа тип
     private final static String JSON_READING_ERROR = "Ошибка чтения файла";
     private final static String FILE_MANAGER_TITLE = "Выбери JSON файл";
     private final static String FILE_MANAGER_ERROR = "Ошибка открытия файлового менеджера";
     private final static int FIRST_CARD = 0;
     private final static int LAST_CARD = 2;
     private final static int NUMBER_OF_CARDS = 3;
-    private final static int READ_CONTENT_RESULT_CODE = 1;
+    private final static int READ_CONTENT_RESULT_CODE = 1;  //для файлвого менеджера
 
     private ViewPager galleryPager;
     private PagerAdapter galleryPagerAdapter;
@@ -58,14 +59,14 @@ public class GalleryActivity extends AppCompatActivity implements GalleryCardFra
 
     @Override
     public void showError(String errorMessage) {
-        galleryPager.setVisibility(View.GONE);
+        galleryPager.setVisibility(View.GONE);  //убираем пейджер с экрана совсем
         showErrorDialog(errorMessage);
     }
 
     @Override
     public void openQuest(String type) {
         Intent intent = new Intent(this, QuestActivity.class);
-        intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP); //очищаем все акивити кот. были
         intent.putExtra(TYPE, type);
         startActivity(intent);
         finish();
@@ -80,12 +81,12 @@ public class GalleryActivity extends AppCompatActivity implements GalleryCardFra
 
     private void initActivity() {
         galleryPager = findViewById(R.id.gallery_pager);
-        galleryPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
+        galleryPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager()); //логика перелистываний
         galleryPager.setAdapter(galleryPagerAdapter);
-        galleryPager.setPageTransformer(true, new ZoomOutPageTransformer());
+        galleryPager.setPageTransformer(true, new ZoomOutPageTransformer()); //как будет перелистыватся
         initErrorDialog();
         initArrows();
-        galleryPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        galleryPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() { //что бы ни сделали с пейджером перерисоват стрелки
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 invalidateArrowsVisibility();
@@ -137,7 +138,7 @@ public class GalleryActivity extends AppCompatActivity implements GalleryCardFra
         return galleryPager.getCurrentItem() + 1;
     }
 
-    private void invalidateArrowsVisibility() {
+    private void invalidateArrowsVisibility() {  //какие стрелки когда показывать
         switch (galleryPager.getCurrentItem()) {
             case FIRST_CARD:
                 onLeftButton.setVisibility(View.GONE);
@@ -156,10 +157,10 @@ public class GalleryActivity extends AppCompatActivity implements GalleryCardFra
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Uri jsonFileUri;
+        Uri jsonFileUri;  //путь
 
         if (resultCode == RESULT_OK && requestCode == READ_CONTENT_RESULT_CODE) {
-            jsonFileUri = data.getData();
+            jsonFileUri = data.getData(); //получаем данные о файле, идентификатор
             if (jsonFileUri != null) {
                 Intent intent = new Intent(this, QuestActivity.class);
                 intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP);
@@ -179,10 +180,10 @@ public class GalleryActivity extends AppCompatActivity implements GalleryCardFra
      */
     @Override
     public void openFileBrowser() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType(JSON_MIME_TYPE);
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT); //открыть файловый браузер и достать файл
+        intent.setType(JSON_MIME_TYPE); //передаем тип
         try {
-            startActivityForResult(Intent.createChooser(intent, FILE_MANAGER_TITLE), READ_CONTENT_RESULT_CODE);
+            startActivityForResult(Intent.createChooser(intent, FILE_MANAGER_TITLE), READ_CONTENT_RESULT_CODE); //создали активити только чтоюы получить путь к файлу
         } catch (ActivityNotFoundException e) {
             showError(FILE_MANAGER_ERROR);
         }

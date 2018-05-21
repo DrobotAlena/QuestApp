@@ -34,21 +34,21 @@ import static nsu.fit.questapp.view.gallary.GalleryCardFragment.TYPE;
  */
 public class QuestActivity extends AppCompatActivity implements QuestView {
 
-    public final static String JSON_URI = "uri";
+    final static String JSON_URI = "uri";
 
     private final static String QUEST_STATUS = "finish";
-    private final static int EMPTY_DRAWABLE_NAME = 0;
-    private final static int INITIAL_PAGE = 0;
+    private final static int EMPTY_DRAWABLE_NAME = 0; //возвращает ошибку
+    private final static int INITIAL_PAGE = 0; //с какой страницы начинаем
     private final static int FIRST_BUTTON_ID = 0;
     private final static int BUTTONS_SIZE = 4;
 
-    private boolean test = false;
     private Presenter presenter;
     private int cardId = INITIAL_PAGE;
     private String cardType;
     private String jsonUri;
+
     @Nullable
-    private CardData card;
+    private CardData card; //одна карта которая отрисовывается
 
     /**
      * Sandwich Menu
@@ -65,8 +65,8 @@ public class QuestActivity extends AppCompatActivity implements QuestView {
     private TextView title;
     private ImageView picture;
     private TextView description;
-    private LinearLayout buttonsLayout;
-    private LinearLayout resultButtonsLayout;
+    private LinearLayout buttonsLayout; //4 кнопки выбора
+    private LinearLayout resultButtonsLayout; //выйти начать заново... финишные кнопки
     private ArrayList<Button> buttons;
 
     /**
@@ -102,7 +102,7 @@ public class QuestActivity extends AppCompatActivity implements QuestView {
         setListeners();
     }
 
-    private void invalidate() {
+    private void invalidate() { //отрисовка
         initCard();
         initPicture();
         initDescription();
@@ -113,7 +113,7 @@ public class QuestActivity extends AppCompatActivity implements QuestView {
         String textTitle;
         title = findViewById(R.id.quest_title);
         setCardTypeFromBundle();
-        if (cardType.equals(CUSTOM) && !test) {
+        if (cardType.equals(CUSTOM) ) {
             setJsonUriFromBundle();
             if(!StringUtils.isEmpty(jsonUri)) {
                 card = presenter.getCardFromStorage(Uri.parse(jsonUri), cardId);
@@ -131,7 +131,7 @@ public class QuestActivity extends AppCompatActivity implements QuestView {
         }
     }
 
-    private void setCardTypeFromBundle() {
+    private void setCardTypeFromBundle() { //по дефолту всегда игра космос. Иначе по TYPE
         if (StringUtils.isEmpty(cardType)) {
             if (isBundleEmpty(getIntent().getExtras())) {
                 cardType = SPACE;
@@ -170,7 +170,7 @@ public class QuestActivity extends AppCompatActivity implements QuestView {
         resultButtonsLayout = findViewById(R.id.result_buttons_set);
         initQuestButtonsSet(buttonsLayout);
         initResultButtons(resultButtonsLayout);
-        if (card != null && StringUtils.isEmpty(card.getStatus())) {
+        if (card != null && StringUtils.isEmpty(card.getStatus())) { //обычная карточка
             resultButtonsLayout.setVisibility(View.GONE);
             ArrayList<ButtonData> buttonData = card.getButtons();
             if (buttonData == null || buttonData.size() != BUTTONS_SIZE) {
@@ -187,7 +187,7 @@ public class QuestActivity extends AppCompatActivity implements QuestView {
                     });
                 }
             }
-        } else if (card != null && card.getStatus().equals(QUEST_STATUS)){
+        } else if (card != null && card.getStatus().equals(QUEST_STATUS)){ //если конец
             buttonsLayout.setVisibility(View.GONE);
             resultButtonsLayout.setVisibility(View.VISIBLE);
         } else {
@@ -222,7 +222,7 @@ public class QuestActivity extends AppCompatActivity implements QuestView {
 
     private void initSandwichMenu() {
         View view = getLayoutInflater().inflate(R.layout.bottom_sheet_menu, null);
-        sandwichMenu = new BottomSheetDialog(this);
+        sandwichMenu = new BottomSheetDialog(this); //bottom... - фрагмент
         sandwichMenu.setContentView(view);
         initSandwichItems(view);
     }

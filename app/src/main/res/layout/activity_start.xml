@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchParent"
-    android:orientation="vertical"
+
     tools:context="nsu.fit.questapp.view.StartActivity">
 
     <ImageView
